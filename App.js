@@ -18,12 +18,12 @@ import FAB from "react-native-fab";
 import { MaterialIcons } from "@expo/vector-icons";
 import styles from "./styles";
 import PhoneInput from "./components/phoneInput";
-import axios from "axios"
+import axios from "axios";
 
 export default function App() {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
-  const [ data, setData]= useState([]);
+  const [data, setData] = useState([]);
   const [from, onChangeEmail] = useState("");
   const [body, onChangePassword] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
@@ -53,24 +53,28 @@ export default function App() {
     },
   ];
 
-  const handleRequest = async() => {
+  const handleRequest = async () => {
+    // e.preventDefault();
+    setIsSubmitting(true)
     const data = {
       phone,
       from,
-      body
-    }
-    await axios.post(`${baseUrl}/api/v1/tips`,data).then((response) => {
+      body,
+    };
+    await axios.post(`${baseUrl}/api/v1/tips`, data).then((response) => {
       console.log("####### DATA #########", response.data);
+      setModalVisible(!modalVisible);
+      alert("Tip sent succesfully");
+      handleGet();
+      setIsSubmitting(false)
     });
-    setModalVisible(!modalVisible);
-    alert("Tip sent");
   };
 
   const handleGet = async () => {
     await axios.get(`${baseUrl}/api/v1/tips`).then((response) => {
       console.log("####### DATA #########", response.data.data);
-      const data = response.data.data
-      setData(data)
+      const data = response.data.data.reverse();
+      setData(data);
     });
 
     // alert("Tip sent");
@@ -78,7 +82,7 @@ export default function App() {
 
   useEffect(() => {
     handleGet();
-  }, []);
+  }, [data]);
 
   const Item = ({ from, body }) => (
     <View
@@ -106,7 +110,7 @@ export default function App() {
         <Text style={{ fontSize: 23 }}>{from}</Text>
       </View>
       <Text style={{ fontSize: 13 }}>{body}</Text>
-      <Divider style={{ marginVertical: 1 }} />
+      <Divider style={{ marginVertical: 5 }} />
       <View
         style={{
           flexDirection: "row",
