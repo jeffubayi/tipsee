@@ -1,7 +1,6 @@
 import { MaterialIcons, Fontisto, Octicons } from '@expo/vector-icons';
 import { Divider, Input } from '@rneui/themed';
 import React, { useState } from 'react';
-import { Button } from '@rneui/themed'
 import {
   SafeAreaView,
   View,
@@ -15,8 +14,6 @@ import {
 } from 'react-native';
 import { COLORS, FONT, SIZES } from '../theme';
 import CreateTip from '../components/createTip';
-import PhoneInput from '../components/phoneInput';
-import AddComment from '../components/Addcomment'
 import axios from 'axios';
 
 const detail = ({ navigation, route }) => {
