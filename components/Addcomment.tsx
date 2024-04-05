@@ -10,25 +10,20 @@ import { useRouter } from 'expo-router';
 import { StyleSheet } from "react-native";
 import { MaterialIcons } from '@expo/vector-icons';
 
-import { COLORS, FONT, SIZES } from "../../theme";
+import { COLORS, FONT, SIZES } from "../theme";
 
 const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
     const router = useRouter();
-    const [activeJobType, setActiveJobType] = useState('');
 
     return (
         <View style={{ marginHorizontal: 10 }}>
-            <View style={styles.container}>
-                <Text style={styles.userName}>Tipseee</Text>
-            </View>
-
             <View style={styles.searchContainer}>
                 <View style={styles.searchWrapper}>
                     <TextInput
                         style={styles.searchInput}
                         value={searchTerm}
                         onChangeText={text => setSearchTerm(text)}
-                        placeholder='What are you looking for?'
+                        placeholder='Add comment'
                     />
                 </View>
 
@@ -49,8 +44,8 @@ const styles = StyleSheet.create({
         width: "100%",
     },
     userName: {
-        fontFamily: FONT.bold,
-        fontSize: SIZES.large,
+        fontWeight: "bold",
+        fontSize: SIZES.xLarge,
         color: COLORS.secondary,
     },
     welcomeMessage: {
