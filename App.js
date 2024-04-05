@@ -28,7 +28,7 @@ export default function App() {
           component={HomeScreen}
         />
         <Stack.Screen
-          options={{ headerShadowVisible: false, headerBackTitle: "Back" }}
+          options={{ headerShadowVisible: false, headerBackTitle: "Back",presentation:"modal" }}
           name="detail"
           component={DetailsScreen}
         />
